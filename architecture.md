@@ -16,26 +16,34 @@ VampireGuard is built on two cooperating layers:
 
 ```mermaid
 flowchart LR
-    subgraph Host["Hyper-V Host"]
-        A[Host Automation Scripts]
-        B[WinRM Trust + CredSSP]
-        C[Backup Engine]
-        D[Discord Notifications]
-    end
+    Host[Hyper-V Host]
+    VM[VRising VM - Hardened Appliance]
 
-    subgraph VM["VRising VM (Hardened Appliance)"]
-        E[VRising Server (NSSM)]
-        F[WinRM HTTPS Listener]
-        G[RCON Interface]
-        H[Firewall Lockdown]
-    end
+    A[Host Automation Scripts]
+    B[WinRM Trust + CredSSP]
+    C[Backup Engine]
+    D[Discord Notifications]
+
+    E[VRising Server - NSSM]
+    F[WinRM HTTPS Listener]
+    G[RCON Interface]
+    H[Firewall Lockdown]
+
+    Host --> A
+    Host --> B
+    Host --> C
+    Host --> D
+
+    VM --> E
+    VM --> F
+    VM --> G
+    VM --> H
 
     A -->|WinRM HTTPS| F
     A -->|RCON| G
     C -->|VM Export| E
-    E -->|Status + Logs| D
+    E -->|Status and Logs| D
 ```
-
 ---
 
 # 2. Component Overview
