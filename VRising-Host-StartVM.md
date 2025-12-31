@@ -60,7 +60,7 @@ The main logic block performs the following:
 
 ```powershell
 $vm = Get-VM -Name $VMName
-
+```
 ### 4.2 Check VM state
 
 - If the VM is **not running**:
