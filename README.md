@@ -37,7 +37,7 @@ This project was built with a simple goal:
 
 All documentation lives in the `/docs` folder:
 
-- [Quick Start Guide]([docs/quickstart.md](https://github.com/DerangedSquid/vampire-guard/blob/main/quickstart.md))
+- [Quick Start Guide](docs/quickstart.md)
 - [Solution Overview](docs/solution-overview.md)
 - [Architecture](docs/architecture.md)
 - [Troubleshooting](docs/troubleshooting.md)
