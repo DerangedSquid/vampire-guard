@@ -1,9 +1,9 @@
-# Master Operator Journey  
-**VampireGuard — Full System Deployment & Operations Guide**  
+# 🧛‍♂️ Master Operator Journey  
+### Full Deployment & Operations Guide for VampireGuard  
 **File:** `/docs/00-operator-journey.md`
 
 This document is the **canonical, start‑to‑finish operator flow** for deploying, securing, running, backing up, restoring, and maintaining a VRising dedicated server using **VampireGuard**.  
-It unifies and cross‑links **all existing documentation** across `/docs/architecture`, `/docs/guides`, and `/docs/scripts`.
+It integrates and cross‑links all documentation across `/docs/architecture`, `/docs/guides`, and `/docs/scripts`.
 
 ---
 
@@ -23,64 +23,43 @@ This Operator Journey walks you through the entire lifecycle:
 9. Restore from backup  
 10. Operate day‑to‑day
 
-If you follow this sequence, your environment will be **predictable, secure, and fully automatable**.
+For a conceptual introduction, see:  
+👉 **[Solution Overview](solution-overview.md)**  
+👉 **[Architecture](architecture.md)**
 
 ---
 
-# 2. Architecture Overview
-
-Before beginning, review the system architecture:
-
-- `/docs/architecture/start-here-overview.md`  
-- `/docs/architecture/architecture.md`  
-- `/docs/architecture/solution-overview.md`
-
-These explain:
-
-- Host ↔ VM relationship  
-- NAT networking  
-- WinRM HTTPS  
-- RCON  
-- VRising server  
-- Backup/export lifecycle  
-- Notification channels  
-
-Understanding this model ensures the rest of the journey makes sense.
-
----
-
-# 3. Prerequisites
+# 2. Prerequisites
 
 Before starting:
 
-- Windows 10/11 Pro or Windows Server with Hyper‑V enabled  
+- Windows 10/11 Pro or Windows Server with Hyper‑V  
 - SLAT‑capable CPU  
 - At least 16 GB RAM recommended  
 - SSD/NVMe storage  
 - Administrative privileges  
 - VRising license (for clients)  
-- Discord webhook (optional but recommended)  
+- Discord webhook (optional)  
 - Static IP plan for the VM  
-- Folder structure under `C:\Hyper V\` and `D:\VMBackups\`  
+- Folder structure under `C:\Hyper V\` and `D:\VMBackups\`
 
-See:
-
-- `/docs/security.md`  
-- `/docs/quickstart.md`
+See:  
+👉 **[Security Architecture](security.md)**  
+👉 **[Quick Start Guide](quickstart.md)**
 
 ---
 
-# 4. Create the VRising VM
+# 3. Create the VRising VM
 
 You may create the VM manually or using the interactive configurator.
 
-### **Recommended Guide**
-- `/docs/guides/vm-creation.md`
+### Guide  
+👉 **[VM Creation Guide](guides/vm-creation.md)**
 
-### **Script Reference**
-- `/docs/scripts/01-HyperV-Host-VMConfigurator.md`
+### Script  
+👉 **[01-HyperV-Host-VMConfigurator.md](scripts/01-HyperV-Host-VMConfigurator.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - A Generation 2 VM  
@@ -94,7 +73,7 @@ Do not proceed until the VM is fully installed and reachable via Hyper‑V conso
 
 ---
 
-# 5. Create the NAT Switch & Assign Static IP
+# 4. Create the NAT Switch & Assign Static IP
 
 This is the foundation for:
 
@@ -103,10 +82,10 @@ This is the foundation for:
 - VRising port exposure  
 - Host ↔ VM communication  
 
-### **Guide**
-- `/docs/guides/nat-switch-setup.md`
+### Guide  
+👉 **[NAT Switch Setup](guides/nat-switch-setup.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - NAT switch: `VG-NAT`  
@@ -122,32 +101,30 @@ Do not proceed until:
 
 ---
 
-# 6. Install VRising Dedicated Server
+# 5. Install VRising Dedicated Server
 
 Install SteamCMD and VRising inside the VM.
 
-### **Guide**
-- `/docs/guides/vm-creation.md` (Section: Install SteamCMD + VRising)
+### Guide  
+👉 **[VM Setup Guide](guides/vm-setup.md)**
 
-### **Script Reference**
-- `/docs/scripts/05-VRising-VM-Setup.md`
+### Script  
+👉 **[05-VRising-VM-Setup.md](scripts/05-VRising-VM-Setup.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
-- VRising installed at:  
-  `C:\VRising\Server\vrisingdedicatedserver`  
-- Data directory at:  
-  `C:\VRising\Data\world1`  
+- VRising installed at: `C:\VRising\Server\vrisingdedicatedserver`  
+- Data directory at: `C:\VRising\Data\world1`  
 - VRisingServer.exe launches manually  
 
 Do not proceed until VRising starts cleanly.
 
 ---
 
-# 7. Configure WinRM HTTPS (Secure Remote Execution)
+# 6. Configure WinRM HTTPS (Secure Remote Execution)
 
-This is required for:
+Required for:
 
 - Backup automation  
 - Remote process control  
@@ -155,16 +132,16 @@ This is required for:
 - Hardening  
 - Health checks  
 
-### **Primary Script**
-- `/docs/scripts/02-VRising-WinRMSetup.md`
+### Host Script  
+👉 **[02-VRising-WinRMSetup.md](scripts/02-VRising-WinRMSetup.md)**
 
-### **Host Trust Script**
-- `/docs/scripts/03-VRising-Host-WinRMTrust.md`
+### Host Trust Script  
+👉 **[03-VRising-Host-WinRMTrust.md](scripts/03-VRising-Host-WinRMTrust.md)**
 
-### **Quick VM Setup (optional)**
-- `/docs/scripts/07-VRising-VM-WinRMQuickSetup.md`
+### VM Quick Setup (optional)  
+👉 **[07-VRising-VM-WinRMQuickSetup.md](scripts/07-VRising-VM-WinRMQuickSetup.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - Self‑signed certificate installed  
@@ -181,7 +158,7 @@ Do not proceed until:
 
 ---
 
-# 8. Harden the VRising VM
+# 7. Harden the VRising VM
 
 This step locks down:
 
@@ -193,10 +170,10 @@ This step locks down:
 - Defender  
 - Attack surface  
 
-### **Script**
-- `/docs/scripts/06-VRising-VM-Harden.md`
+### Script  
+👉 **[06-VRising-VM-Harden.md](scripts/06-VRising-VM-Harden.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - Only required ports open  
@@ -210,12 +187,12 @@ Do not proceed until the hardening log shows no errors.
 
 ---
 
-# 9. Start the VRising Server (Inside VM)
+# 8. Start the VRising Server (Inside VM)
 
-### **Script**
-- `/docs/scripts/08-VRising-VM-StartServer.md`
+### Script  
+👉 **[08-VRising-VM-StartServer.md](scripts/08-VRising-VM-StartServer.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - VRisingServer.exe running  
@@ -223,21 +200,19 @@ You will have:
 - Discord notification (optional)  
 - Persistent data path validated  
 
-Do not proceed until the server is confirmed running.
-
 ---
 
-# 10. Configure Automated Backups (Host)
+# 9. Configure Automated Backups (Host)
 
 This is the core of VampireGuard.
 
-### **Script**
-- `/docs/scripts/09-VRising-Host-Backup.md`
+### Script  
+👉 **[09-VRising-Host-Backup.md](scripts/09-VRising-Host-Backup.md)**
 
-### **Guide**
-- `/docs/guides/restore-guide.md`
+### Guide  
+👉 **[Restore Guide](guides/restore-guide.md)**
 
-### **Outcome**
+### Outcome  
 You will have:
 
 - Scheduled backups  
@@ -257,12 +232,12 @@ Do not proceed until:
 
 ---
 
-# 11. Validate the Entire Environment
+# 10. Validate the Entire Environment
 
-### **Guide**
-- `/docs/guides/validation-checklist.md`
+### Guide  
+👉 **[Validation Checklist](guides/validation-checklist.md)**
 
-### **Outcome**
+### Outcome  
 You confirm:
 
 - NAT works  
@@ -279,12 +254,12 @@ This is the final gate before production.
 
 ---
 
-# 12. Restore Workflow (When Needed)
+# 11. Restore Workflow (When Needed)
 
-### **Guide**
-- `/docs/guides/restore-guide.md`
+### Guide  
+👉 **[Restore Guide](guides/restore-guide.md)**
 
-### **Outcome**
+### Outcome  
 You can:
 
 - Import VM from backup  
@@ -298,22 +273,20 @@ This completes the lifecycle.
 
 ---
 
-# 13. Player‑Facing Documentation
+# 12. Player‑Facing Documentation
 
-### **Guide**
-- `/docs/how-to-connect.md`
+### Player Guide  
+👉 **[How to Connect](how-to-connect.md)**
 
-### **Notifications & RCON**
-- `/docs/notifications-and-rcon.md`
-
-Provide these to players/admins as needed.
+### Notifications & RCON  
+👉 **[Notifications & RCON Setup](notifications-and-rcon.md)**
 
 ---
 
-# 14. Troubleshooting
+# 13. Troubleshooting
 
-### **Guide**
-- `/docs/troubleshooting.md`
+### Guide  
+👉 **[Troubleshooting Guide](troubleshooting.md)**
 
 Covers:
 
@@ -326,20 +299,20 @@ Covers:
 
 ---
 
-# 15. Operational Runbook
+# 14. Operations Runbook
 
-### **Guide**
-- `/docs/runbook.md`
+### Guide  
+👉 **[Operations Runbook](runbook.md)**
 
 This is your day‑to‑day operations reference.
 
 ---
 
-# 16. Lessons Learned & Security
+# 15. Lessons Learned & Security
 
-### **Guides**
-- `/docs/lessons-learned.md`  
-- `/docs/security.md`
+### Guides  
+👉 **[Lessons Learned](lessons-learned.md)**  
+👉 **[Security Architecture](security.md)**
 
 These capture:
 
@@ -349,19 +322,7 @@ These capture:
 
 ---
 
-# 17. Documentation Navigation
-
-### **Sidebar**
-- `/docs/sidebar.md`
-
-### **Master Index**
-- `/docs/scripts/Master-Index.md`
-
-These provide structured navigation across the entire documentation suite.
-
----
-
-# 18. Completion
+# 16. Completion
 
 If you have followed this Operator Journey:
 
