@@ -33,6 +33,7 @@ For a conceptual introduction, see:
 
 Before starting:
 
+- Verify virtualization support is enabled in BIOS/UEFI before installing Hyper‑V
 - Windows 10/11 Pro or Windows Server with Hyper‑V  
 - SLAT‑capable CPU  
 - At least 16 GB RAM recommended  

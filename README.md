@@ -125,18 +125,20 @@ Full diagrams available in:
 
 ## 🛠️ Scripts Included
 
-### **Host-Side Automation**
+### **Phase 1 — Host-Side Preparation**
 1. [VRising-Host-VMConfigurator.ps1](scripts/VRising-Host-VMConfigurator.ps1) — [Docs](docs/scripts/01-HyperV-Host-VMConfigurator.md)  
 2. [VRising-WinRMSetup.ps1](scripts/VRising-WinRMSetup.ps1) — [Docs](docs/scripts/02-VRising-WinRMSetup.md)  
 3. [VRising-Host-WinRMTrust.ps1](scripts/VRising-Host-WinRMTrust.ps1) — [Docs](docs/scripts/03-VRising-Host-WinRMTrust.md)  
 4. [VRising-Host-StartVM.ps1](scripts/VRising-Host-StartVM.ps1) — [Docs](docs/scripts/04-VRising-Host-StartVM.md)  
-5. [VRising-Host-Backup.ps1](scripts/VRising-Host-Backup.ps1) — [Docs](docs/scripts/09-VRising-Host-Backup.md)  
 
-### **VM-Side Automation**
-6. [VRising-VM-Setup.ps1](scripts/VRising-VM-Setup.ps1) — [Docs](docs/scripts/05-VRising-VM-Setup.md)  
-7. [VRising-VM-Harden.ps1](scripts/VRising-VM-Harden.ps1) — [Docs](docs/scripts/06-VRising-VM-Harden.md)  
-8. [VRising-VM-WinRMQuickSetup.ps1](scripts/VRising-VM-WinRMQuickSetup.ps1) — [Docs](docs/scripts/07-VRising-VM-WinRMQuickSetup.md)  
-9. [VRising-VM-StartServer.ps1](scripts/VRising-VM-StartServer.ps1) — [Docs](docs/scripts/08-VRising-VM-StartServer.md)    
+### **Phase 2 — VM Preparation**
+5. [VRising-VM-Setup.ps1](scripts/VRising-VM-Setup.ps1) — [Docs](docs/scripts/05-VRising-VM-Setup.md)  
+6. [VRising-VM-Harden.ps1](scripts/VRising-VM-Harden.ps1) — [Docs](docs/scripts/06-VRising-VM-Harden.md)  
+7. [VRising-VM-WinRMQuickSetup.ps1](scripts/VRising-VM-WinRMQuickSetup.ps1) — [Docs](docs/scripts/07-VRising-VM-WinRMQuickSetup.md)  
+8. [VRising-VM-StartServer.ps1](scripts/VRising-VM-StartServer.ps1) — [Docs](docs/scripts/08-VRising-VM-StartServer.md)  
+
+### **Phase 3 — Operations**
+9. [VRising-Host-Backup.ps1](scripts/VRising-Host-Backup.ps1) — [Docs](docs/scripts/09-VRising-Host-Backup.md)     
 
 ---
 

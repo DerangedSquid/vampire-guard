@@ -13,6 +13,7 @@ It summarizes the required steps and links to the scripts that perform each acti
 
 Before beginning, ensure the following are ready:
 
+- **Enable CPU virtualization in BIOS/UEFI (Intel VT‑x / AMD‑V / SLAT)**
 - **Hyper‑V installed and enabled**
 - **A Windows VM created for VRising**
 - **Static IPv4 assigned to the VM**
