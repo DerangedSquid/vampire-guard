@@ -2,6 +2,29 @@
 
 This script configures and validates secure WinRM over HTTPS connectivity from the Hyper-V host to a target VM. It provides interactive prompts, optional TrustedHosts updates, HTTPS listener validation, and optional PSRemoting tests using stored credentials.
 
+## WinRM Trust Chain Diagram
+
+```mermaid
+flowchart LR
+    subgraph VM[VM Side]
+        V1[Generate Self‑Signed Certificate]
+        V2[Create WinRM HTTPS Listener]
+        V3[Open Firewall Port 5986]
+        V4[Expose Certificate Thumbprint]
+    end
+
+    subgraph HOST[Host Side]
+        H1[Import VM Certificate<br/>LocalMachine\Root]
+        H2[Configure TrustedHosts]
+        H3[Enable CredSSP Delegation]
+        H4[Test WinRM HTTPS Connectivity]
+    end
+
+    %% Flow
+    V1 --> V2 --> V3 --> V4 --> H1 --> H2 --> H3 --> H4
+```
+
+
 ---
 
 ## 1. Purpose

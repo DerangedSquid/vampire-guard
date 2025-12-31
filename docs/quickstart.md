@@ -133,3 +133,15 @@ If you want to extend VampireGuard:
 - Share improvements or scripts  
 
 ---
+
+# 9. Configure Notifications & RCON
+
+To enable Discord alerts and safe RCON-based shutdowns, follow:  
+👉 [Notifications & RCON Setup](notifications-and-rcon.md)
+
+---
+
+# 10. Share the Server With Friends
+
+Players can join using the simple guide here:  
+👉 [How to Connect to the VRising Server](how-to-connect.md)

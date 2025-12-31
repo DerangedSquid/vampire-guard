@@ -64,6 +64,9 @@ The host never touches the VRising files directly — it interacts with the VM t
 VampireGuard is composed of several script modules, each with a clear responsibility.  
 The components below are listed in the **canonical operational sequence**.
 
+For details on configuring Discord notifications and RCON, see:  
+👉 [Notifications & RCON Setup](notifications-and-rcon.md)
+
 ---
 
 ## 3.1 Host Preparation (01–04)
@@ -171,3 +174,5 @@ VampireGuard emphasizes visibility:
 - Clear error messages  
 
 ---
+For player connection instructions, see:  
+👉 [How to Connect to the VRising Server](how-to-connect.md)

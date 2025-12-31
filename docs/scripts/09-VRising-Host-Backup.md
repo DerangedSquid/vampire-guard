@@ -2,6 +2,39 @@
 
 This script performs a full Hyper-V virtual machine backup for a VRising server VM, using in-game notifications, graceful shutdown via RCON, fallback process termination via WinRM, and Hyper-V VM export. It is designed as a host-side backup orchestration script for a single VM.
 
+## Backup Lifecycle Diagram
+
+```mermaid
+flowchart TD
+    subgraph PRECHECKS[Pre‑Backup Validation]
+        A1[Validate WinRM HTTPS]
+        A2[Validate RCON Connectivity]
+        A3[Check Disk Space]
+        A4[Check Backup Directory]
+    end
+
+    subgraph SHUTDOWN[Graceful Shutdown Phase]
+        B1[Send RCON Shutdown]
+        B2[Verify Server Stopped]
+        B3[Shutdown VM]
+    end
+
+    subgraph EXPORT[Backup Export Phase]
+        C1[Hyper‑V Export VM]
+        C2[Write Backup History Entry]
+        C3[Send Discord Notification]
+    end
+
+    subgraph RESTART[Restart + Health Check]
+        D1[Start VM]
+        D2[Start VRising Service]
+        D3[Health Check]
+    end
+
+    %% Flow
+    PRECHECKS --> SHUTDOWN --> EXPORT --> RESTART
+```
+
 ---
 
 ## 1. Purpose
@@ -402,3 +435,4 @@ Potential areas to extend this script:
   - Send logs to a central log aggregator or dashboard for multiple hosts/VMs.
 
 This script already provides a strong, production-aware backup flow for a single VRising VM. With parameterization and externalized configuration, it can evolve into a generalized VampireGuard backup module.
+

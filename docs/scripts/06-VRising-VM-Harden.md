@@ -2,6 +2,21 @@
 
 This script hardens a Windows-based VRising virtual machine into a minimal‑surface, single‑purpose game server. It applies firewall lockdowns, WinRM restrictions, service reductions, account hardening, Defender configuration, and basic integrity checks. It is intended to be run **inside the VM** after OS installation and VRising server deployment.
 
+## VM Hardening Flow Diagram
+```mermaid
+flowchart TD
+    subgraph HARDEN[VM Hardening Workflow]
+        A1[Disable Unnecessary Services]
+        A2[Apply Firewall Lockdown]
+        A3[Configure Defender Policies]
+        A4[Remove Legacy Protocols<br/>SMBv1, RDP (optional)]
+        A5[Restrict WinRM to HTTPS Only]
+        A6[Validate Hardened State]
+    end
+
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6
+```
+
 ---
 
 ## 1. Purpose

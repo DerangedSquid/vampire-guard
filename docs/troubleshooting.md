@@ -39,6 +39,9 @@ VampireGuard is designed to be predictable and observable, but issues can still 
 
 # 2. RCON Connectivity Problems (VM → Server)
 
+> For full setup instructions, see:  
+> 👉 **`docs/notifications-and-rcon.md`**
+
 ## Symptoms
 - Backup job hangs at **Send RCON Shutdown**  
 - VRising server never stops  
@@ -138,6 +141,9 @@ VampireGuard is designed to be predictable and observable, but issues can still 
 
 # 6. Discord Notification Failures (Host)
 
+> For webhook setup instructions, see:  
+> 👉 **`docs/notifications-and-rcon.md`**
+
 ## Symptoms
 - No notifications after backup  
 - Errors like:  
@@ -207,3 +213,11 @@ Rebuild only if:
 VampireGuard’s architecture makes rebuilds safe because backups are atomic and self‑contained.
 
 ---
+
+# 10. Integration References
+
+- **Discord Notifications & RCON Setup**  
+  👉 `docs/notifications-and-rcon.md`
+
+- **Player Connection Guide**  
+  👉 `docs/how-to-connect.md`

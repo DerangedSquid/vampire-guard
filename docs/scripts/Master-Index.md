@@ -61,3 +61,8 @@ Performs safe, consistent backups with pre‑shutdown RCON and post‑backup val
 - This sequence is the **canonical operator workflow** for VampireGuard.
 
 ---
+
+### Additional Documentation
+
+- [Notifications & RCON Setup](../notifications-and-rcon.md)  
+- [How to Connect to the VRising Server](../how-to-connect.md)

@@ -77,6 +77,26 @@ If you want to get up and running fast, start here:
 
 ---
 
+## 📣 Notifications & RCON
+
+VampireGuard integrates:
+
+- **Discord Webhooks** for backup alerts, shutdown/startup messages, and error reporting  
+- **RCON** for graceful VRising server shutdowns and health checks  
+
+Configuration instructions:  
+👉 [Notifications & RCON Setup](docs/notifications-and-rcon.md)
+
+---
+
+## 🎮 How Players Connect
+
+Server owners can share this guide with friends or community members:
+
+👉 [How to Connect to the VRising Server](docs/how-to-connect.md)
+
+---
+
 ## 🏗️ Architecture Summary
 
 VampireGuard uses a two‑layer architecture:

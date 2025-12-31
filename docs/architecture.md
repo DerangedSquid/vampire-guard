@@ -15,34 +15,38 @@ VampireGuard is built on two cooperating layers:
 ## 1.1 High‑Level Diagram
 
 ```mermaid
-flowchart LR
-    Host[Hyper-V Host]
-    VM[VRising VM - Hardened Appliance]
+flowchart TD
+    subgraph HOST[Hyper‑V Host Layer]
+        A1[01 — VM Configurator<br/>Prepare VM for automation]
+        A2[02 — WinRM Setup (Host)<br/>Create HTTPS listener]
+        A3[03 — WinRM Trust<br/>Import cert + enable CredSSP]
+        A4[04 — Start VM<br/>Validate connectivity]
+        A9[09 — Backup Engine<br/>Graceful shutdown + export]
+        D1[Discord Notifications]
+    end
 
-    A[Host Automation Scripts]
-    B[WinRM Trust + CredSSP]
-    C[Backup Engine]
-    D[Discord Notifications]
+    subgraph VM[VRising VM Layer (Hardened Appliance)]
+        B5[05 — VM Setup<br/>Install VRising + SteamCMD]
+        B6[06 — VM Hardening<br/>Firewall + service lockdown]
+        B7[07 — WinRM Quick Setup<br/>VM-side HTTPS config]
+        B8[08 — VRising Server Service<br/>NSSM + RCON]
+        RCON[RCON Interface]
+        HTTPS[WinRM HTTPS Listener]
+    end
 
-    E[VRising Server - NSSM]
-    F[WinRM HTTPS Listener]
-    G[RCON Interface]
-    H[Firewall Lockdown]
+    %% Host → VM relationships
+    A1 --> A2 --> A3 --> A4 --> B5
+    B5 --> B6 --> B7 --> B8
 
-    Host --> A
-    Host --> B
-    Host --> C
-    Host --> D
+    %% Automation flows
+    A9 -->|RCON Shutdown| RCON
+    A9 -->|WinRM Commands| HTTPS
+    A9 -->|VM Export| VM
+    B8 -->|Status + Logs| D1
 
-    VM --> E
-    VM --> F
-    VM --> G
-    VM --> H
-
-    A -->|WinRM HTTPS| F
-    A -->|RCON| G
-    C -->|VM Export| E
-    E -->|Status and Logs| D
+    %% Visual grouping
+    RCON --- B8
+    HTTPS --- B7
 ```
 
 ---
@@ -196,7 +200,21 @@ This model ensures predictable, repeatable, low‑maintenance operation.
 
 ---
 
-# 8. Architecture Summary
+# 8. Integration References
+
+For configuration details related to communication and connectivity:
+
+- **Discord Notifications & RCON Setup**  
+  👉 `docs/notifications-and-rcon.md`
+
+- **Player Connection Guide**  
+  👉 `docs/how-to-connect.md`
+
+These documents ensure both operators and players have the information they need for a complete, reliable VRising experience.
+
+---
+
+# 9. Architecture Summary
 
 VampireGuard’s architecture provides:
 

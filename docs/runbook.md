@@ -44,6 +44,9 @@ Review:
 - Discord summary notification  
 - Timestamp of last successful export  
 
+For notification setup details, see:  
+👉 `docs/notifications-and-rcon.md`
+
 ## 2.4 Check Disk Space
 ```powershell
 Get-PSDrive -Name C
@@ -61,6 +64,9 @@ Ensure:
 - RCON responding  
 - Sufficient disk space  
 - No active Hyper‑V operations  
+
+For RCON configuration details, see:  
+👉 `docs/notifications-and-rcon.md`
 
 ## 3.2 Execute Backup
 ```powershell
@@ -118,6 +124,9 @@ Get-Service -Name VRising
 
 ## 4.7 Validate RCON
 Send a test command or status query.
+
+For RCON troubleshooting, see:  
+👉 `docs/notifications-and-rcon.md`
 
 ---
 
@@ -216,6 +225,9 @@ Look for:
 - Webhook response codes  
 - Error messages  
 
+For webhook setup, see:  
+👉 `docs/notifications-and-rcon.md`
+
 ---
 
 # 9. Emergency Procedures
@@ -237,6 +249,7 @@ Look for:
 - Validate firewall  
 - Regenerate password  
 - Re‑run script **08**  
+- See: `docs/notifications-and-rcon.md`
 
 ## 9.4 Backup Export Fails
 - Ensure VM is fully off  
@@ -282,3 +295,13 @@ Follow section 4.
 - RCON responding  
 - Backup history updated  
 - Discord notifications working  
+
+---
+
+# 12. Integration References
+
+- **Discord Notifications & RCON Setup**  
+  👉 `docs/notifications-and-rcon.md`
+
+- **Player Connection Guide**  
+  👉 `docs/how-to-connect.md`
