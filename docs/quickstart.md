@@ -1,13 +1,17 @@
 # 🧛‍♂️ VampireGuard — Quick Start Guide  
-### A fast, reliable path to a fully automated VRising server on Hyper‑V
+### A fast, high‑level overview for deploying a fully automated VRising server on Hyper‑V
 
-This guide walks you through the exact sequence required to deploy a hardened, observable, fully automated VRising server using VampireGuard. Follow these steps in order to ensure a clean, deterministic setup.
+> **For the full, detailed deployment sequence, see the Master Operator Journey:**  
+> 👉 **[00‑operator‑journey.md](00-operator-journey.md)**
+
+This Quick Start provides a concise, 10‑minute overview of the VampireGuard setup process.  
+It summarizes the required steps and links to the scripts that perform each action.
 
 ---
 
 # 1. Prerequisites
 
-Before you begin, ensure the following are ready:
+Before beginning, ensure the following are ready:
 
 - **Hyper‑V installed and enabled**
 - **A Windows VM created for VRising**
@@ -16,17 +20,21 @@ Before you begin, ensure the following are ready:
 - **NSSM downloaded (optional but recommended)**
 - **SteamCMD installed on the VM**
 
+For deeper context, see:  
+👉 `/docs/solution-overview.md`  
+👉 `/docs/architecture.md`
+
 ---
 
 # 2. Prepare the Hyper‑V Host
 
-Run these scripts **on the host** before touching the VM.
+Run these scripts **on the host** before configuring the VM.
 
 ## Step 2.1 — Configure the VM
 Run:
 
 - **VRising-Host-VMConfigurator.ps1**  
-  Configures VM hardware, checkpoints, networking, and baseline settings.
+  Sets up VM hardware, networking, checkpoints, and baseline configuration.
 
 ## Step 2.2 — Configure WinRM HTTPS (Host)
 Run:
@@ -38,7 +46,7 @@ Run:
 Run:
 
 - **VRising-Host-WinRMTrust.ps1**  
-  Imports the VM certificate, configures TrustedHosts, and enables CredSSP.
+  Imports the VM certificate, updates TrustedHosts, and enables CredSSP.
 
 ## Step 2.4 — Start the VM
 Run:
@@ -56,7 +64,7 @@ Log into the VM and run the following scripts in order.
 Run:
 
 - **VRising-VM-Setup.ps1**  
-  Installs SteamCMD, downloads the VRising Dedicated Server, and prepares the directory structure.
+  Installs SteamCMD, downloads the VRising Dedicated Server, and prepares directories.
 
 ## Step 3.2 — Harden the VM
 Run:
@@ -67,10 +75,10 @@ Run:
 ## Step 3.3 — Configure WinRM HTTPS (VM)
 Choose one:
 
-- **VRising-VM-WinRMQuickSetup.ps1** (fast interactive version)
+- **VRising-VM-WinRMQuickSetup.ps1** (fast interactive version)  
 - **VRising-WinRMSetup.ps1** (full production version)
 
-This ensures the VM exposes a secure WinRM HTTPS listener on port 5986.
+This ensures the VM exposes a secure WinRM HTTPS listener on port **5986**.
 
 ---
 
@@ -79,7 +87,7 @@ This ensures the VM exposes a secure WinRM HTTPS listener on port 5986.
 Inside the VM:
 
 - **VRising-VM-StartServer.ps1**  
-  Installs the VRising server as an NSSM service, configures RCON, and validates startup.
+  Launches VRisingServer.exe, configures persistent data paths, and validates startup.
 
 ---
 
@@ -96,31 +104,32 @@ Run on the host:
   - Discord notifications  
   - Automatic cleanup of old backups  
 
-You can schedule this using Task Scheduler.
+Schedule this script using **Task Scheduler** for automated nightly backups.
 
 ---
 
 # 6. Validate the Deployment
 
-Perform the following checks:
+Confirm the following:
 
-- **Test WinRM HTTPS connectivity**
-- **Test PSRemoting with stored credentials**
-- **Start the VRising server service**
-- **Connect from a VRising client**
-- **Trigger a manual backup**
+- **WinRM HTTPS connectivity works**
+- **PSRemoting works with stored credentials**
+- **VRising server starts cleanly**
+- **Clients can connect to the server**
+- **A manual backup completes successfully**
 
-If everything passes, your VampireGuard deployment is fully operational.
+For a full validation checklist:  
+👉 `/docs/guides/validation-checklist.md`
 
 ---
 
 # 7. Recommended Next Steps
 
-- Review the Solution Overview  
-- Study the Architecture diagrams  
-- Read the Troubleshooting appendix  
-- Explore the Lessons Learned  
-- Customize your automation schedule  
+- Review the **Solution Overview**  
+- Study the **Architecture diagrams**  
+- Read the **Troubleshooting** appendix  
+- Explore **Lessons Learned**  
+- Customize your **automation schedule**  
 
 ---
 
@@ -136,12 +145,17 @@ If you want to extend VampireGuard:
 
 # 9. Configure Notifications & RCON
 
-To enable Discord alerts and safe RCON-based shutdowns, follow:  
-👉 [Notifications & RCON Setup](notifications-and-rcon.md)
+To enable Discord alerts and safe RCON‑based shutdowns, follow:  
+👉 **[Notifications & RCON Setup](notifications-and-rcon.md)**
 
 ---
 
 # 10. Share the Server With Friends
 
 Players can join using the simple guide here:  
-👉 [How to Connect to the VRising Server](how-to-connect.md)
+👉 **[How to Connect to the VRising Server](how-to-connect.md)**
+
+---
+
+> **Next Step:** Continue with the full deployment sequence in the  
+> 👉 **[Master Operator Journey](00-operator-journey.md)**  

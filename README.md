@@ -23,7 +23,6 @@
 # 🧛‍♂️ VampireGuard  
 ### Automated VRising Server Management for Hyper‑V
 
-
 VampireGuard is a complete, production‑grade automation suite for running a hardened, observable, self‑maintaining VRising dedicated server on Microsoft Hyper‑V. It transforms a Windows VM into a secure, single‑purpose appliance and provides a full host‑side orchestration layer for backups, lifecycle management, WinRM communication, and operational visibility.
 
 This project was built with a simple goal:  
@@ -31,28 +30,39 @@ This project was built with a simple goal:
 
 ---
 
-## 🚀 Key Features
+# 🚀 Start Here — Master Operator Journey
 
-- **Full VM lifecycle automation**  
-  Setup → Harden → Configure → Start → Backup → Restore
+If you're deploying VampireGuard for the first time, begin with the **Master Operator Journey**:
 
-- **Secure WinRM HTTPS communication**  
-  Certificate‑backed, firewall‑scoped, CredSSP‑enabled
+👉 **[00‑operator‑journey.md](docs/00-operator-journey.md)**
 
-- **Graceful shutdown + RCON integration**  
-  Prevents world corruption and ensures clean backups
+This guide walks you through the entire lifecycle:  
+VM creation → NAT → WinRM → Hardening → VRising install → Backups → Validation → Restore.
 
-- **Deterministic, idempotent scripts**  
-  Safe to re‑run, self‑healing, predictable
+---
 
-- **Operational visibility**  
-  Discord notifications, structured logs, backup history
+## 🧭 Quick Start (10‑Minute Overview)
 
-- **Hardened VM appliance**  
-  Firewall lockdown, service minimization, Defender tuning
+If you want a fast, high‑level summary of the setup process:
 
-- **Production‑ready documentation**  
-  Architecture diagrams, troubleshooting, lessons learned
+👉 **[Quick Start Guide](docs/quickstart.md)**
+
+For the full, detailed deployment sequence, see the  
+👉 **[Master Operator Journey](docs/00-operator-journey.md)**
+
+---
+
+## 📚 Documentation Map
+
+- **Master Operator Journey** — full deployment sequence  
+- **Quick Start** — high‑level overview  
+- **Architecture** — system design and diagrams  
+- **Guides** — NAT, VM creation, restore, validation, notifications  
+- **Scripts** — detailed documentation for each automation script  
+- **Runbook** — day‑to‑day operations  
+- **Troubleshooting** — common issues and fixes  
+- **Security** — hardening and best practices  
+- **Lessons Learned** — design rationale and insights  
 
 ---
 
@@ -60,20 +70,13 @@ This project was built with a simple goal:
 
 All documentation lives in the `/docs` folder:
 
+- [Master Operator Journey](docs/00-operator-journey.md)
 - [Quick Start Guide](docs/quickstart.md)
 - [Solution Overview](docs/solution-overview.md)
 - [Architecture](docs/architecture.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Lessons Learned](docs/lessons-learned.md)
 - [Script Documentation](docs/scripts/)
-
----
-
-## 🧭 Quick Start
-
-If you want to get up and running fast, start here:
-
-👉 **[Quick Start Guide](docs/quickstart.md)**
 
 ---
 
@@ -123,17 +126,17 @@ Full diagrams available in:
 ## 🛠️ Scripts Included
 
 ### **Host-Side Automation**
-1. [VRising-Host-VMConfigurator.ps1](scripts/VRising-Host-VMConfigurator.ps1) — [Docs](docs/scripts/HyperV-Host-VMConfigurator.md)  
-2. [VRising-WinRMSetup.ps1](scripts/VRising-WinRMSetup.ps1) — [Docs](docs/scripts/VRising-WinRMSetup.md)  
-3. [VRising-Host-WinRMTrust.ps1](scripts/VRising-Host-WinRMTrust.ps1) — [Docs](docs/scripts/VRising-Host-WinRMTrust.md)  
-4. [VRising-Host-StartVM.ps1](scripts/VRising-Host-StartVM.ps1) — [Docs](docs/scripts/VRising-Host-StartVM.md)  
-5. [VRising-Host-Backup.ps1](scripts/VRising-Host-Backup.ps1) — [Docs](docs/scripts/VRising-Host-Backup.md)  
+1. [VRising-Host-VMConfigurator.ps1](scripts/VRising-Host-VMConfigurator.ps1) — [Docs](docs/scripts/01-HyperV-Host-VMConfigurator.md)  
+2. [VRising-WinRMSetup.ps1](scripts/VRising-WinRMSetup.ps1) — [Docs](docs/scripts/02-VRising-WinRMSetup.md)  
+3. [VRising-Host-WinRMTrust.ps1](scripts/VRising-Host-WinRMTrust.ps1) — [Docs](docs/scripts/03-VRising-Host-WinRMTrust.md)  
+4. [VRising-Host-StartVM.ps1](scripts/VRising-Host-StartVM.ps1) — [Docs](docs/scripts/04-VRising-Host-StartVM.md)  
+5. [VRising-Host-Backup.ps1](scripts/VRising-Host-Backup.ps1) — [Docs](docs/scripts/09-VRising-Host-Backup.md)  
 
 ### **VM-Side Automation**
-6. [VRising-VM-Setup.ps1](scripts/VRising-VM-Setup.ps1) — [Docs](docs/scripts/VRising-VM-Setup.md)  
-7. [VRising-VM-Harden.ps1](scripts/VRising-VM-Harden.ps1) — [Docs](docs/scripts/VRising-VM-Harden.md)  
-8. [VRising-VM-WinRMQuickSetup.ps1](scripts/VRising-VM-WinRMQuickSetup.ps1) — [Docs](docs/scripts/VRising-VM-WinRMQuickSetup.md)  
-9. [VRising-VM-StartServer.ps1](scripts/VRising-VM-StartServer.ps1) — [Docs](docs/scripts/VRising-VM-StartServer.md)    
+6. [VRising-VM-Setup.ps1](scripts/VRising-VM-Setup.ps1) — [Docs](docs/scripts/05-VRising-VM-Setup.md)  
+7. [VRising-VM-Harden.ps1](scripts/VRising-VM-Harden.ps1) — [Docs](docs/scripts/06-VRising-VM-Harden.md)  
+8. [VRising-VM-WinRMQuickSetup.ps1](scripts/VRising-VM-WinRMQuickSetup.ps1) — [Docs](docs/scripts/07-VRising-VM-WinRMQuickSetup.md)  
+9. [VRising-VM-StartServer.ps1](scripts/VRising-VM-StartServer.ps1) — [Docs](docs/scripts/08-VRising-VM-StartServer.md)    
 
 ---
 
@@ -144,6 +147,9 @@ Full diagrams available in:
 - PowerShell 5.1+  
 - WinRM HTTPS enabled  
 - NSSM (optional but recommended)  
+
+Before beginning setup, review the  
+👉 **[Master Operator Journey](docs/00-operator-journey.md)**
 
 ---
 
