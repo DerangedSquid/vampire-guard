@@ -1,4 +1,4 @@
-# 🧛‍♂️ VampireGuard — Architecture
+# 🧛‍♂️ VampireGuard — Architecture  
 ### A secure, automated, appliance‑style VRising server framework for Hyper‑V
 
 VampireGuard uses a layered architecture that separates responsibilities between the Hyper‑V host and the VRising VM. This design ensures security, reliability, and deterministic automation while keeping the VM sealed and the host in full operational control.
@@ -9,7 +9,7 @@ VampireGuard uses a layered architecture that separates responsibilities between
 
 VampireGuard is built on two cooperating layers:
 
-- **Host Layer** — Orchestrates automation, backups, lifecycle, WinRM trust, and notifications.
+- **Host Layer** — Orchestrates automation, backups, lifecycle, WinRM trust, and notifications.  
 - **VM Layer** — Runs the VRising server inside a hardened Windows VM with minimal attack surface.
 
 ## 1.1 High‑Level Diagram
@@ -44,42 +44,47 @@ flowchart LR
     C -->|VM Export| E
     E -->|Status and Logs| D
 ```
+
 ---
 
 # 2. Component Overview
 
-## 2.1 VM Layer Components
-
-### **VRising Dedicated Server**
-Installed via SteamCMD, managed as an NSSM service.
-
-### **WinRM HTTPS Listener**
-Certificate‑backed, firewall‑scoped, used for all remote automation.
-
-### **RCON Interface**
-Used for graceful shutdowns and health checks.
-
-### **Firewall Lockdown**
-Only required ports are open; unnecessary services disabled.
-
-### **Hardened Windows Configuration**
-Reduced attack surface, minimized background services.
+The components below are listed in the **canonical operational sequence**, matching the numbered script documentation.
 
 ---
 
-## 2.2 Host Layer Components
+## 2.1 Host Layer Components (01–04, 09)
 
-### **Automation Scripts**
-PowerShell modules that orchestrate VM lifecycle, backups, and configuration.
+### **01 — VM Configuration**
+Ensures the VM is configured correctly for automation (checkpoints disabled, integration services validated, networking prepared).
 
-### **Backup Engine**
-Uses Hyper‑V VM export for atomic, corruption‑free backups.
+### **02 — WinRM Setup (Host)**
+Creates a certificate‑backed WinRM HTTPS listener, configures firewall rules, and prepares secure remote execution.
 
-### **WinRM Trust + CredSSP**
-Ensures secure remote execution with certificate validation.
+### **03 — WinRM Trust + CredSSP**
+Imports the VM’s certificate, configures TrustedHosts, and enables secure credential delegation.
 
-### **Discord Notification System**
-Sends operational updates, backup results, and error alerts.
+### **04 — VM Start**
+Boots the VM and validates WinRM connectivity.
+
+### **09 — Backup Engine**
+Uses Hyper‑V VM export for atomic, corruption‑free backups with RCON‑based graceful shutdown.
+
+---
+
+## 2.2 VM Layer Components (05–08)
+
+### **05 — VRising Dedicated Server Setup**
+Installed via SteamCMD, prepares directory structure, and configures server files.
+
+### **06 — VM Hardening**
+Applies firewall lockdown, disables unnecessary services, configures Defender, and reduces attack surface.
+
+### **07 — WinRM HTTPS Listener (VM)**
+Certificate‑backed, firewall‑scoped, used for all remote automation.
+
+### **08 — VRising Server Service**
+Managed via NSSM, integrates RCON for graceful shutdowns and health checks.
 
 ---
 

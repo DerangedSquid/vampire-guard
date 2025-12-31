@@ -1,4 +1,4 @@
-# 🧛‍♂️ VampireGuard — Solution Overview
+# 🧛‍♂️ VampireGuard — Solution Overview  
 ### A hardened, automated, observable VRising server appliance for Hyper‑V
 
 VampireGuard is a full lifecycle automation framework designed to run a VRising dedicated server inside a secure, single‑purpose Windows VM on Microsoft Hyper‑V. It combines host‑side orchestration, VM‑side hardening, WinRM HTTPS communication, and operational visibility into a cohesive, production‑grade system.
@@ -14,12 +14,12 @@ VampireGuard was built to solve a real problem:
 
 The project is guided by several principles:
 
-- **Determinism** — Every script should produce the same result every time.
-- **Idempotency** — Safe to re‑run without breaking anything.
-- **Observability** — You should always know what the server is doing.
-- **Security** — The VM should be locked down to its intended purpose.
-- **Graceful operation** — Backups and shutdowns must never corrupt the world.
-- **Self‑maintenance** — The system should recover from common failure modes.
+- **Determinism** — Every script should produce the same result every time.  
+- **Idempotency** — Safe to re‑run without breaking anything.  
+- **Observability** — You should always know what the server is doing.  
+- **Security** — The VM should be locked down to its intended purpose.  
+- **Graceful operation** — Backups and shutdowns must never corrupt the world.  
+- **Self‑maintenance** — The system should recover from common failure modes.  
 
 The result is a VRising server that behaves like an appliance: predictable, hardened, and easy to operate.
 
@@ -61,44 +61,62 @@ The host never touches the VRising files directly — it interacts with the VM t
 
 # 3. Core Components
 
-VampireGuard is composed of several script modules, each with a clear responsibility.
+VampireGuard is composed of several script modules, each with a clear responsibility.  
+The components below are listed in the **canonical operational sequence**.
 
-## 3.1 VM Setup & Hardening
+---
 
-- **VRising-VM-Setup.ps1**  
-  Installs SteamCMD, downloads VRising, creates directory structure.
+## 3.1 Host Preparation (01–04)
 
-- **VRising-VM-Harden.ps1**  
-  Applies firewall rules, disables unnecessary services, configures Defender, and locks down the VM.
+### **01 — VM Configuration**  
+**VRising-Host-VMConfigurator.ps1**  
+Ensures the VM is configured correctly for automation (checkpoints disabled, integration services validated, networking prepared).
 
-## 3.2 WinRM Configuration
+### **02 — WinRM Setup (Host)**  
+**VRising-WinRMSetup.ps1**  
+Creates a certificate‑backed WinRM HTTPS listener, configures firewall rules, and prepares secure remote execution.
 
-- **VRising-WinRMSetup.ps1**  
-  Full production WinRM HTTPS configuration with certificate creation, listener setup, and firewall rules.
+### **03 — WinRM Trust Establishment**  
+**VRising-Host-WinRMTrust.ps1**  
+Imports the VM’s certificate, configures TrustedHosts, and enables CredSSP for secure credential delegation.
 
-- **VRising-VM-WinRMQuickSetup.ps1**  
-  Lightweight, interactive version for quick testing.
+### **04 — Start VM**  
+**VRising-Host-StartVM.ps1**  
+Boots the VM and validates WinRM connectivity.
 
-- **VRising-Host-WinRMTrust.ps1**  
-  Imports the VM’s certificate, configures TrustedHosts, and enables CredSSP.
+---
 
-## 3.3 Server Lifecycle
+## 3.2 VM Preparation (05–08)
 
-- **VRising-VM-StartServer.ps1**  
-  Installs and manages the VRising server as an NSSM service, configures RCON, and validates startup.
+### **05 — VM Setup**  
+**VRising-VM-Setup.ps1**  
+Installs SteamCMD, downloads VRising, and prepares the directory structure.
 
-- **VRising-Host-VMConfigurator.ps1**  
-  Ensures the VM is configured correctly for automation (checkpoints disabled, integration services validated, etc.).
+### **06 — VM Hardening**  
+**VRising-VM-Harden.ps1**  
+Applies firewall rules, disables unnecessary services, configures Defender, and locks down the VM.
 
-## 3.4 Backup & Restore
+### **07 — WinRM Quick Setup (VM)**  
+**VRising-VM-WinRMQuickSetup.ps1**  
+Lightweight, interactive WinRM HTTPS configuration for rebuilds or testing.
 
-- **VRising-Host-Backup.ps1**  
-  Performs a full backup cycle:
-  - Graceful shutdown via RCON  
-  - VM export  
-  - Backup history tracking  
-  - Discord notifications  
-  - Automatic cleanup  
+### **08 — Start VRising Server**  
+**VRising-VM-StartServer.ps1**  
+Installs and manages the VRising server as an NSSM service, configures RCON, and validates startup.
+
+---
+
+## 3.3 Operations (09)
+
+### **09 — Backup & Lifecycle Automation**  
+**VRising-Host-Backup.ps1**  
+Performs a full backup cycle:
+
+- Graceful shutdown via RCON  
+- VM export  
+- Backup history tracking  
+- Discord notifications  
+- Automatic cleanup  
 
 Backups are atomic and safe to run on a schedule.
 
@@ -124,15 +142,15 @@ The VM is effectively a sealed appliance — only the host can manage it.
 
 A typical automation cycle looks like this:
 
-1. **Host connects to VM via WinRM HTTPS**
-2. **RCON gracefully stops the VRising server**
-3. **VM shuts down cleanly**
-4. **Host exports the VM to a backup directory**
-5. **Backup history is updated**
-6. **Discord notification is sent**
-7. **VM is restarted**
-8. **VRising server service starts automatically**
-9. **Host verifies server health**
+1. **Host connects to VM via WinRM HTTPS**  
+2. **RCON gracefully stops the VRising server**  
+3. **VM shuts down cleanly**  
+4. **Host exports the VM to a backup directory**  
+5. **Backup history is updated**  
+6. **Discord notification is sent**  
+7. **VM is restarted**  
+8. **VRising server service starts automatically**  
+9. **Host verifies server health**  
 
 This cycle is deterministic, observable, and safe to run unattended.
 
@@ -150,4 +168,6 @@ VampireGuard emphasizes visibility:
   - Server shutdown  
   - Server startup  
 - Backup history table  
-- Clear error messages
+- Clear error messages  
+
+---
