@@ -60,3 +60,64 @@ The main logic block performs the following:
 
 ```powershell
 $vm = Get-VM -Name $VMName
+
+### 4.2 Check VM state
+
+- If the VM is **not running**:
+  - Calls `Start-VM -Name <VMName>`
+  - Writes a console message confirming the start
+  - Sends a Discord notification indicating the VM is powering on
+
+- If the VM **is already running**:
+  - Writes a console message indicating it is already online
+  - Sends a Discord notification indicating the VM was already running
+
+### 4.3 Error handling
+
+If any exception occurs:
+
+- A console error is printed in red
+- A Discord notification is sent indicating the VM failed to start
+
+This ensures operators are aware of failures even when not logged into the host.
+
+---
+
+## 5. Usage Pattern and Intent
+
+This script is intended to be:
+
+- Run automatically when the Hyper‑V host user logs in
+- Used as part of a lightweight operational workflow
+- Ensuring the VRising VM is always brought online when the host becomes active
+
+Typical deployment methods:
+
+- Windows Task Scheduler (trigger: “At log on”)
+- Windows Startup folder (for simple environments)
+
+---
+
+## 6. Limitations and Assumptions
+
+- Assumes the VM exists and is named correctly.
+- Assumes the user running the script has permission to manage Hyper‑V VMs.
+- Assumes the Discord webhook URL is valid.
+- Does not include retry logic for VM startup.
+- Does not include logging to disk (console + Discord only).
+
+---
+
+## 7. Potential Future Enhancements
+
+- Add logging to file for audit history.
+- Add retry logic for VM startup failures.
+- Add health checks after VM start (e.g., ping, WinRM, RCON).
+- Parameterize VM name and webhook URL.
+- Integrate with a broader VampireGuard host automation suite.
+
+---
+
+## 8. Summary
+
+`VRising-Host-StartVM.ps1` is a simple, reliable script that ensures the VRising VM is started automatically when the host user logs in. It provides immediate operator visibility through Discord notifications and is suitable for lightweight automation scenarios.
