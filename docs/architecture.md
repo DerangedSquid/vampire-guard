@@ -18,14 +18,14 @@ VampireGuard is built on two cooperating layers:
 flowchart TD
     subgraph HOST[Hyper‑V Host Layer]
         A1[01 — VM Configurator<br/>Prepare VM for automation]
-        A2[02 — WinRM Setup (Host)<br/>Create HTTPS listener]
+        A2[02 — WinRM Setup - Host<br/>Create HTTPS listener]
         A3[03 — WinRM Trust<br/>Import cert + enable CredSSP]
         A4[04 — Start VM<br/>Validate connectivity]
         A9[09 — Backup Engine<br/>Graceful shutdown + export]
         D1[Discord Notifications]
     end
 
-    subgraph VM[VRising VM Layer (Hardened Appliance)]
+    subgraph VM[VRising VM Layer - Hardened Appliance]
         B5[05 — VM Setup<br/>Install VRising + SteamCMD]
         B6[06 — VM Hardening<br/>Firewall + service lockdown]
         B7[07 — WinRM Quick Setup<br/>VM-side HTTPS config]
