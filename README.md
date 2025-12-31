@@ -79,22 +79,20 @@ Full diagrams available in:
 
 ## 🛠️ Scripts Included
 
-### **Host-Side**
-- VRising-Host-Backup.ps1  
-- VRising-Host-StartVM.ps1  
-- VRising-Host-WinRMTrust.ps1  
-- VRising-Host-VMConfigurator.ps1  
+### **Host-Side Automation**
+- [VRising-Host-Backup.ps1](scripts/VRising-Host-Backup.ps1) — [Docs](docs/scripts/VRising-Host-Backup.md)  
+- [VRising-Host-StartVM.ps1](scripts/VRising-Host-StartVM.ps1) — [Docs](docs/scripts/VRising-Host-StartVM.md)  
+- [VRising-Host-VMConfigurator.ps1](scripts/VRising-Host-VMConfigurator.ps1) — [Docs](docs/scripts/HyperV-Host-VMConfigurator.md)  
+- [VRising-Host-WinRMTrust.ps1](scripts/VRising-Host-WinRMTrust.ps1) — [Docs](docs/scripts/VRising-Host-WinRMTrust.md)  
 
-### **VM-Side**
-- VRising-VM-Setup.ps1  
-- VRising-VM-Harden.ps1  
-- VRising-VM-StartServer.ps1  
+### **VM-Side Automation**
+- [VRising-VM-Setup.ps1](scripts/VRising-VM-Setup.ps1) — [Docs](docs/scripts/VRising-VM-Setup.md)  
+- [VRising-VM-Harden.ps1](scripts/VRising-VM-Harden.ps1) — [Docs](docs/scripts/VRising-VM-Harden.md)  
+- [VRising-VM-StartServer.ps1](scripts/VRising-VM-StartServer.ps1) — [Docs](docs/scripts/VRising-VM-StartServer.md)  
 
-### **WinRM Tools**
-- VRising-WinRMSetup.ps1  
-- VRising-VM-WWinRMQuickSetup.ps1  
-
-Each script is documented in `/docs/scripts/`.
+### **WinRM / Connectivity Tools**
+- [VRising-WinRMSetup.ps1](scripts/VRising-WinRMSetup.ps1) — [Docs](docs/scripts/VRising-WinRMSetup.md)  
+- [VRising-VM-WinRMQuickSetup.ps1](scripts/VRising-VM-WinRMQuickSetup.ps1) — [Docs](docs/scripts/VRising-VM-WinRMQuickSetup.md)  
 
 ---
 
